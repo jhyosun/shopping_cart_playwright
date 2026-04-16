@@ -1,5 +1,5 @@
 # Playwright 활용 이커머스 웹 서비스 자동화 테스트
-
+![image.png](images/image.JPG)
 
 ## 1. 프로젝트 목표
 
