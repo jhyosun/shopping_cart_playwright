@@ -187,7 +187,7 @@
 
 | BUG_001 | BUG_002 |
 |---|---|
-| ![](bug_01.JPG) | ![](bug_02.JPG) |
+| ![image.png](images/bug_01.JPG) | ![image.png](images/bug_02.JPG) |
 
 ---
 
