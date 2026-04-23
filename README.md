@@ -183,11 +183,11 @@
 
 ### 🔹 결함리포트
 
-SauceDemo는 의도적으로 버그가 심어져 있음. **performance_glitch_user, problem_user** 계정으로 테스트하면 실제 결함. 이걸 결함리포트로 작성
-problem_user 이걸로 로그인 했을 경우 썸네일이 원래 상품이 아니라 멍멍이고, 카트에 넣으면 remove가 안된다.
-performance_glitch_user 이걸로 로그인 했을 때 바로 페이지가 넘어가지 않고 딜레이가 있다가 넘어감, 로그인할 때 몇 초씩 걸림.
+![image.png](images/bug_report_E2E.JPG)
 
-    
+| BUG_001 | BUG_002 |
+|---|---|
+| ![](bug_01.JPG) | ![](bug_02.JPG) |
 
 ---
 
