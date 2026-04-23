@@ -1,4 +1,4 @@
-# Playwright 활용 이커머스 웹 서비스 자동화 테스트
+# 이커머스 웹 서비스 기능 테스트 및 자동화
 ![image.png](images/image.JPG)
 
 ### 🔹 개요
