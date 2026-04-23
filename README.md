@@ -95,8 +95,37 @@
     4. 입력값 누락
        - ID 또는 비밀번호 미입력
        - 로그인 실패 및 에러 메시지 확인
-
-
+           
+  - 장바구니
+    1. 상품 1개 추가
+       - 상품 1개 선택 후 "Add to cart" 클릭
+       - 장바구니 수량 1 증가 확인
+    2. 여러 상품 추가
+       - 서로 다른 상품 2개 이상 추가
+       - 장바구니 수량 정상 반영 확인
+    3. 상품 제거
+       - 장바구니에서 상품 제거 클릭
+       - 해당 상품 삭제 확인
+    4. 장바구니 유지 확인
+       - 상품 추가 후 페이지 이동
+       - 장바구니 데이터 유지 확인
+      
+  - 체크아웃
+    1. 정상 결제 진행
+       - First Name / Last Name / Zip Code 입력
+       - 주문 완료 페이지 이동 확인
+    2. 필수값 누락 (이름)
+       - First Name 미입력
+       - "Error: First Name is required" 메시지 확인
+    3. 필수값 누락 (성)
+       - Last Name 미입력
+       - "Error: Last Name is required" 메시지 확인
+    4. 필수값 누락 (우편번호)
+       - Zip Code 미입력
+       - "Error: Postal Code is required" 메시지 확인
+    5. 결제 완료 후 상태 확인
+       - 주문 완료 후 Thank you for your order! 메시지 확인
+       - 장바구니 초기화 확인
 
 
 
@@ -155,17 +184,15 @@
 ### 🔹 결함리포트
 
 SauceDemo는 의도적으로 버그가 심어져 있음. **performance_glitch_user, problem_user** 계정으로 테스트하면 실제 결함. 이걸 결함리포트로 작성
+problem_user 이걸로 로그인 했을 경우 썸네일이 원래 상품이 아니라 멍멍이고, 카트에 넣으면 remove가 안된다.
+performance_glitch_user 이걸로 로그인 했을 때 바로 페이지가 넘어가지 않고 딜레이가 있다가 넘어감, 로그인할 때 몇 초씩 걸림.
 
-- 로그인정보
-    
-    username: standard_user
-    password: secret_sauce
     
 
 ---
 
 ### 🔹 결과
-- 다양한 회원가입 시나리오에 대해 자동화 테스트 수행
+- 로그인, 장바구니, 체크아웃에 대해 자동화 테스트 수행
 - 정상/비정상 입력 케이스 모두 검증 가능
 - 테스트 코드 재사용성과 확장성 확보
 - 반복 테스트 수행 시간 단축
