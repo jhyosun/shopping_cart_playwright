@@ -185,17 +185,17 @@
 
 ![image.png](images/bug_report_E2E.JPG)
 
-| BUG_001 | BUG_002 |
-|---|---|
-| ![image.png](images/bug_01.JPG) | ![image.png](images/bug_02.JPG) |
-
-
 | BUG_001 | 
 |---|
 | ![image.png](images/bug_01.JPG) |
+
 | BUG_002 |
 |---|
 | ![image.png](images/bug_02.JPG) |
+
+| BUG_003 |
+|---|
+| ![image.png](images/bug_03.JPG) |
 
 
 ---
