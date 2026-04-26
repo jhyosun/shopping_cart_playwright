@@ -147,7 +147,8 @@
 ![image.png](images/login_page.JPG)
 
 **이커머스 장바구니**
--> 장바구니는 여러 상품을 담았다가 뺐다가 할거 같아서 자동화 굳이?
+![image.png](images/cart1.JPG)
+![image.png](images/cart_page1.JPG)
 
 **체크 아웃**
 - 정상 결제 진행
