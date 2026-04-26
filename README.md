@@ -232,6 +232,7 @@ def test_login (page, case):
         login_page.print_errors()
         expect(login_page.flash_login_error).to_contain_text(case["expect_flash"])
 ```
+![image.png](images/login1.JPG)
 
 **이커머스 장바구니**
 
