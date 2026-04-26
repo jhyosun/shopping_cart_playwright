@@ -142,12 +142,9 @@
 
 #### 🔎 페이지 객체 설계
 
-**로그인 기능 자동화**
+**로그인**
 
-- 정상 로그인
-- 잘못된 아이디
-- 잘못된 비밀번호
-- 빈값 입력
+![image.png](images/login_page.JPG)
 
 **이커머스 장바구니**
 -> 장바구니는 여러 상품을 담았다가 뺐다가 할거 같아서 자동화 굳이?
@@ -172,8 +169,80 @@
 
 #### 📝 테스트 코드 작성
 
+
+**로그인**
+
+```python
+
+import pytest
+from pages.login_page import LogInPage
+from playwright.sync_api import expect
+
+LOGIN_CASES = [
+
+    # 정상적인 로그인
+    {"id" : "success",
+     "username" : "standard_user", 
+     "password" : "secret_sauce",
+     "should_succeed": True},
+
+    # 비밀번호 오류
+    {"id":"invalid_password",
+     "username" : "standard_user", 
+     "password" : "wrongpass", 
+     "should_succeed": False,
+     "expect_flash" : "Epic sadface: Username and password do not match any user in this service"},
+
+    # 존재하지 않는 사용자
+    {"id":"unknown_username",
+     "username" : "unknown_user", 
+     "password" : "anypassword", 
+     "should_succeed": False,
+     "expect_flash" : "Epic sadface: Username and password do not match any user in this service"},
+
+    # 입력값 누락
+    {"id":"missing_all",
+     "username" : "", 
+     "password" : "", 
+     "should_succeed": False,
+     "expect_flash" : "Epic sadface: Username is required"},
+    {"id":"missing_password",
+     "username" : "standard_user", 
+     "password" : "", 
+     "should_succeed": False,
+     "expect_flash" : "Epic sadface: Password is required"},
+    {"id":"missing_username",
+     "username" : "",
+     "password" :"secret_sauce", 
+     "should_succeed": False,
+     "expect_flash" : "Epic sadface: Username is required"}
+
+]
+
+@pytest.mark.parametrize("case", LOGIN_CASES, ids=[c["id"] for c in LOGIN_CASES])
+def test_login (page, case):
+    login_page = LogInPage(page)
+    login_page.open()
+    login_page.login(case["username"], case["password"])
+       
+
+    if case["should_succeed"]:
+        expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+    else:
+        login_page.print_errors()
+        expect(login_page.flash_login_error).to_contain_text(case["expect_flash"])
+```
+
+**이커머스 장바구니**
+
 ```python
 ```
+
+**체크 아웃**
+
+```python
+```
+
 
 
 ---
