@@ -128,7 +128,6 @@
        - 장바구니 초기화 확인
 
 
-
 ---
 
 ### 🔹 테스트 케이스
@@ -147,6 +146,7 @@
 ![image.png](images/login_page.JPG)
 
 **이커머스 장바구니**
+
 ![image.png](images/cart1.JPG)
 ![image.png](images/cart_page1.JPG)
 
