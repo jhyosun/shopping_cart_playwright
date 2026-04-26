@@ -162,9 +162,9 @@
 
 #### 🔎 공통 실행 환경 구성
 
+![image.png](images/conftest.JPG)
 
-
-👉`conftest.py`에서 Pytest fixture를 사용해 Playwright 환경 구성하였다.
+👉`conftest.py`에서 장바구니 테스트는 매번 로그인이 필요하니까, 매 테스트마다 로그인 코드를 반복하지 않도록 Pytest fixture를 사용해 환경 구성하였다.
     
 ---
 
