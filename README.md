@@ -247,7 +247,7 @@ def test_add_one_item(page, login):
     inventory.open()
     inventory.add_to_cart(0)
 
-    assert inventory.get_cart_count() == 1
+    expect(inventory.cart_badge).to_have_text("1")
 
 # 장바구니에 여러 상품 담고 목록 확인
 def test_add_many_item(page, login):
@@ -256,24 +256,27 @@ def test_add_many_item(page, login):
     inventory.add_to_cart(0)
     inventory.add_to_cart(3)
     inventory.add_to_cart(1)
-    assert inventory.get_cart_count() == 3
+    expect(inventory.cart_badge).to_have_text("3")
 
     inventory.go_to_cart()
     cart = CartPage(page)
-    print(cart.get_item_name())
+    names = cart.get_item_name()
+    assert len(names) == 3
+    print(names)
 
 # 장바구니에서 물건 제거
 def test_remove_item(page, login):
     inventory = Cart(page)
     inventory.open()
     inventory.add_to_cart(0)
-    assert inventory.get_cart_count() == 1
+    expect(inventory.cart_badge).to_have_text("1")
 
     inventory.go_to_cart()
 
     cart = CartPage(page)
     cart.remove_item(0)
-    assert cart.get_cart_item() == 0
+    expect(cart.cart_page_badge).not_to_be_visible() 
+
 ```
 ![image.png](images/cart_page2.JPG)
 
