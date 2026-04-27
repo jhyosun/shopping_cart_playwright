@@ -277,6 +277,7 @@ def test_remove_item(page, login):
     cart.remove_item(0)
     assert cart.get_cart_item() == 0
 ```
+![image.png](images/cart_page2.JPG)
 
 
 **체크 아웃**
