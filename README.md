@@ -238,7 +238,46 @@ def test_login (page, case):
 **이커머스 장바구니**
 
 ```python
+
+import pytest
+from pages.cart import Cart, CartPage
+from playwright.sync_api import expect
+
+# 장바구니에 상품 하나 담기
+def test_add_one_item(page, login):
+    inventory = Cart(page)
+    inventory.open()
+    inventory.add_to_cart(0)
+
+    assert inventory.get_cart_count() == 1
+
+# 장바구니에 여러 상품 담고 목록 확인
+def test_add_many_item(page, login):
+    inventory = Cart(page)
+    inventory.open()
+    inventory.add_to_cart(0)
+    inventory.add_to_cart(3)
+    inventory.add_to_cart(1)
+    assert inventory.get_cart_count() == 3
+
+    inventory.go_to_cart()
+    cart = CartPage(page)
+    print(cart.get_item_name())
+
+# 장바구니에서 물건 제거
+def test_remove_item(page, login):
+    inventory = Cart(page)
+    inventory.open()
+    inventory.add_to_cart(0)
+    assert inventory.get_cart_count() == 1
+
+    inventory.go_to_cart()
+
+    cart = CartPage(page)
+    cart.remove_item(0)
+    assert cart.get_cart_item() == 0
 ```
+
 
 **체크 아웃**
 
