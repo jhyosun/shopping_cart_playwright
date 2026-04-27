@@ -54,9 +54,10 @@
 #### C. 주문
 
 1. 정상 정보 입력 후 주문 완료
-2. 필수 입력값 누락 시 에러 메시지
+2. 주문 완료 페이지 문구 확인
 3. 주문 완료 후 장바구니 초기화 확인
-4. 주문 완료 페이지 문구 확인
+4. 필수 입력값 누락 시 에러 메시지
+
 
 
 ---
@@ -112,6 +113,7 @@
     1. 정상 결제 진행
        - First Name / Last Name / Zip Code 입력
        - 주문 완료 페이지 이동 확인
+       - 주문 완료 후 Thank you for your order! 메시지 확인
     2. 필수값 누락 (이름)
        - First Name 미입력
        - "Error: First Name is required" 메시지 확인
@@ -121,9 +123,6 @@
     4. 필수값 누락 (우편번호)
        - Zip Code 미입력
        - "Error: Postal Code is required" 메시지 확인
-    5. 결제 완료 후 상태 확인
-       - 주문 완료 후 Thank you for your order! 메시지 확인
-       - 장바구니 초기화 확인
 
 
 ---
@@ -149,11 +148,7 @@
 ![image.png](images/cart_page1.JPG)
 
 **체크 아웃**
-- 정상 결제 진행
-- 필수값 누락 (이름)
-- 필수값 누락 (성)
-- 필수값 누락 (우편번호)
-- 결제 완료 후 상태 확인
+
 
 
 ---
@@ -285,8 +280,74 @@ def test_remove_item(page, login):
 **체크 아웃**
 
 ```python
-```
+# test/test_checkout.py
 
+import pytest
+from playwright.sync_api import expect
+from pages.checkout import CheckOut, CheckOutPage, FinishPage, Complete
+
+# 정상결제
+def test_checkout(page, cart):
+    checkout = CheckOut(page)
+    checkout.go_to_checkout()
+
+    checkout_page = CheckOutPage(page)
+    checkout_page.input_name("John", "Smith", "12345")
+    checkout_page.go_to_finish()
+
+    finish_page = FinishPage(page)
+    finish_page.go_to_complete()
+
+    complete_page = Complete(page)
+    expect(complete_page.order_flash).to_have_text("Thank you for your order!")
+    print([complete_page.get_finish_msg()])
+
+
+# 체크아웃 정보 누락
+CHECKOUT_INPUT = [
+    # first name 누락
+    {"id" : "first_name_missing",
+     "firstname" : "",
+     "lastname" : "smith",
+     "zipcode" : "12345",
+     "expect_flash" : "Error: First Name is required"},
+
+     # last name 누락
+     {"id" : "last_name_missing",
+      "firstname" : "John",
+      "lastname" : "",
+      "zipcode" : "67891",
+      "expect_flash" : "Error: Last Name is required"},
+
+      # zip code 누락
+      {"id" : "zipcode_missing",
+      "firstname" : "영희",
+      "lastname" : "김",
+      "zipcode" : "",
+      "expect_flash" : "Error: Postal Code is required"},
+
+      # 전체 누락
+      {"id" : "missing_all",
+       "firstname" : "",
+       "lastname" : "",
+       "zipcode" : "",
+       "expect_flash" : "Error: First Name is required"}
+]
+
+@pytest.mark.parametrize("case", CHECKOUT_INPUT, ids=[c["id"] for c in CHECKOUT_INPUT])
+def test_checkout_fail(page, cart, case):
+    checkout = CheckOut(page)
+    checkout.go_to_checkout()
+
+    checkout_page = CheckOutPage(page)
+    checkout_page.input_name(case["firstname"], case["lastname"], case["zipcode"])
+    checkout_page.go_to_finish()
+
+    checkout_page.print_flash_check_error()
+    expect(checkout_page.error_flash_msg).to_contain_text(case["expect_flash"])
+
+```
+![image.png](images/checkout2.JPG)
 
 
 ---
