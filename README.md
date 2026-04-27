@@ -161,8 +161,9 @@
 #### 🔎 공통 실행 환경 구성
 
 ![image.png](images/conftest.JPG)
+![image.png](images/conftest2.JPG)
 
-👉`conftest.py`에서 장바구니 테스트는 매번 로그인이 필요하니까, 매 테스트마다 로그인 코드를 반복하지 않도록 Pytest fixture를 사용해 환경 구성하였다.
+👉`conftest.py`에서 장바구니 테스트는 매번 로그인이 필요하니까, 매 테스트마다 로그인 코드를 반복하지 않도록 Pytest fixture를 사용해 환경 구성하였다. 체크아웃 테스트도 마찬가지로 매번 로그인->상품담기를 반복하지 않도록 공동 환경을 만들어줬다.
     
 ---
 
