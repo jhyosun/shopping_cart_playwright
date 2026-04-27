@@ -261,7 +261,7 @@ def test_add_many_item(page, login):
     inventory.go_to_cart()
     cart = CartPage(page)
     names = cart.get_item_name()
-    assert len(names) == 3
+    assert len(names) == 3      # 3개 담겼는지 확인
     print(names)
 
 # 장바구니에서 물건 제거
@@ -275,7 +275,7 @@ def test_remove_item(page, login):
 
     cart = CartPage(page)
     cart.remove_item(0)
-    expect(cart.cart_page_badge).not_to_be_visible() 
+    expect(cart.cart_page_badge).not_to_be_visible()  # 뱃지 사라졌는지 확인
 
 ```
 ![image.png](images/cart_page2.JPG)
