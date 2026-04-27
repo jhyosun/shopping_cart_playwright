@@ -300,6 +300,7 @@ def test_checkout(page, cart):
 
     complete_page = Complete(page)
     expect(complete_page.order_flash).to_have_text("Thank you for your order!")
+    expect(complete_page.complete_cart_badge).not_to_be_visible()
     print([complete_page.get_finish_msg()])
 
 
