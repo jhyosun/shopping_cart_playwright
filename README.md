@@ -354,7 +354,7 @@ def test_checkout_fail(page, cart, case):
 
 | | |
 |---|---|
-| ![](images/image8.JPG) | ![](images/image9.JPG) |
+| ![image.png](images/image2.JPG) | ![image.png](images/image3.JPG) |
 
 
 ---
