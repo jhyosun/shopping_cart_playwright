@@ -150,7 +150,7 @@
 **체크 아웃**
 
 ![image.png](images/checkout.JPG)
-![image.png](images/checkout1.JPG)
+![image.png](images/checkout0.JPG)
 
 ---
 
