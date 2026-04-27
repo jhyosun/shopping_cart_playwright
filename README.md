@@ -280,7 +280,6 @@ def test_remove_item(page, login):
 **체크 아웃**
 
 ```python
-# test/test_checkout.py
 
 import pytest
 from playwright.sync_api import expect
